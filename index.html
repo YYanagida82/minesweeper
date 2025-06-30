@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>マインスイーパー</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>マインスイーパー</h1>
+    <div class="difficulty-selection">
+        <button id="beginner-button">初級</button>
+        <button id="intermediate-button">中級</button>
+        <button id="expert-button">上級</button>
+    </div>
+    <div class="game-container">
+        <div class="game-info">
+            <div id="mine-count" class="digital-display"><span>010</span></div>
+            <button id="reset-button"></button>
+            <div id="timer" class="digital-display"><span>0000</span></div>
+        </div>
+        <div id="game-board"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
