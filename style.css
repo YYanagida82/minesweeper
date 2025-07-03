@@ -14,29 +14,65 @@ body {
   border-left-color: #fff;
   padding: 10px;
   background-color: #c0c0c0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px auto;
+  width: fit-content;
+  min-width: min-content;
 }
 
 /* ゲーム情報（地雷数、リセットボタン、タイマー）のスタイル */
 .game-info {
   display: flex; /* フレックスボックスレイアウトを使用 */
   justify-content: space-between; /* 両端揃え */
+  align-items: center; /* 縦方向中央揃え */
   margin-bottom: 10px;
   border: 2px inset #808080;
-  padding: 5px;
+  padding: 5px 0;
+  box-sizing: border-box;
+  background-color: #c0c0c0;
+  width: 100%;
 }
 
+/* 7セグメントLEDスタイルのデジタル表示の共通スタイル */
 .digital-display {
   background-color: #000;
   color: #ff0000;
-  /* font-family: 'Chakra Petch', sans-serif; */
   font-size: 24px;
-  padding: 5px;
   border: 2px inset #808080;
   display: inline-block;
   flex-shrink: 0;
   flex-grow: 0;
+  box-sizing: border-box;
+  line-height: 1;
+  font-family: 'DSEG7 Classic', monospace;
+  letter-spacing: 0;
+  font-weight: normal;
+  text-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
+}
 
-  font-variant-numeric: tabular-nums;
+/* 地雷数表示のスタイル */
+#mine-count {
+  width: 60px;
+  text-align: center;
+  padding: 0;
+}
+
+/* タイマー表示のスタイル */
+#timer {
+  width: 90px;
+  text-align: center;
+  padding: 0;
+}
+
+/* 7セグメントLEDフォントの定義 */
+@font-face {
+  font-family: 'DSEG7 Classic';
+  src: url('data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAA+IAA8AAAAAHwwAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABWAAAADsAAABUIIslek9TLzIAAAGUAAAAQwAAAFY+IFPDY21hcAAAAdgAAAB7AAABzK6E6vVjdnQgAAACVAAAAAsAAAAOAAAAAGZwZ20AAAJgAAAG7QAADgxiLvl6Z2FzcAAACSAAAAAIAAAACAAAABBnbHlmAAAJKAAAA+AAAAWAUKDeklhlYWQAAA0IAAAAMwAAADYZ1vVhaGhlYQAADTwAAAAgAAAAJAd5A4pobXR4AAANXAAAABgAAAAYEsH//2xvY2EAAA10AAAADgAAAA4DtgJSbWF4cAAADYQAAAAgAAAAIAEfC/VuYW1lAAANpAAAAXUAAALNzZ0YGXBvc3QAAA8cAAAARgAAAFxA1UoHcHJlcAAAD2QAAAB6AAAAnH62O7Z4nGNgZGBg4GIwYLBjYHJx8wlh4MtJLMljkGJgYYAAkDwymzEnMz2RgQPGA8qxgGkOIGaDiAIAJjsFSAB4nGNgZN7OOIGBlYGBqYppDwMDQw+EZnzAYMjIBBRlYGVmwAoC0lxTGA68YPjkyxz0P4shijmIYRpQmBEkBwAMiQy7AHic7ZHLDcMwDEMfnabtKT10jw7SI3P02mMG6BCZwpXlj2wZBHUOHIAeLGIAXZiKMPSG0PjITfWe3eoFZ+aJia1bvx5NJLnrVra/3Wr5XPGl1He6O/q9lDnYNDHxf6m/239PjXhvUid8b1IrfDOpH/5sYgs=') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
 #reset-button {
@@ -46,6 +82,10 @@ body {
   background-color: #c0c0c0;
   font-size: 24px;
   cursor: pointer;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #reset-button.happy {
@@ -66,36 +106,49 @@ body {
 /* ゲーム盤のスタイル */
 #game-board {
   display: grid; /* グリッドレイアウトを使用 */
-  grid-template-columns: repeat(
-    var(--cols),
-    20px
-  ); /* Use CSS variable for columns */
-  grid-template-rows: repeat(var(--rows), 20px); /* Use CSS variable for rows */
+  grid-template-columns: repeat(var(--cols), 20px);
+  grid-template-rows: repeat(var(--rows), 20px);
   border: 3px solid #808080;
   border-top-color: #fff;
   border-left-color: #fff;
+  box-sizing: content-box;
+  width: calc(var(--cols) * 20px);
+  height: calc(var(--rows) * 20px);
+  overflow: visible;
+  margin: 0 auto;
+  grid-gap: 0;
 }
 
 /* セルのスタイル */
 .cell {
-  width: 20px; /* 幅 */
-  height: 20px; /* 高さ */
-  border-top: 3px solid #fff; /* 上の境界線 */
-  border-left: 3px solid #fff; /* 左の境界線 */
-  border-bottom: 3px solid #808080; /* 下の境界線 */
-  border-right: 3px solid #808080; /* 右の境界線 */
+  width: 16px; /* 幅 */
+  height: 16px; /* 高さ */
+  border-top: 2px solid #fff; /* 上の境界線 */
+  border-left: 2px solid #fff; /* 左の境界線 */
+  border-bottom: 2px solid #808080; /* 下の境界線 */
+  border-right: 2px solid #808080; /* 右の境界線 */
   background-color: #c0c0c0; /* 背景色 */
   text-align: center; /* テキストを中央揃え */
-  line-height: 20px; /* 行の高さをセルの高さに合わせる */
+  line-height: 16px; /* 行の高さをセルの高さに合わせる */
   font-weight: bold; /* 太字 */
   cursor: pointer; /* カーソルをポインターにする */
   font-size: 16px;
+  box-sizing: content-box;
+  margin: 0;
+  padding: 0;
+  flex-shrink: 0;
 }
 
 /* 開かれたセルのスタイル */
 .cell.opened {
   border: 1px solid #808080;
   background-color: #c0c0c0;
+  box-sizing: content-box;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  padding: 0;
+  flex-shrink: 0;
 }
 
 /* 地雷セルのスタイル */

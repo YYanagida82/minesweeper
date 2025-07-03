@@ -78,6 +78,8 @@ document.addEventListener('DOMContentLoaded', () => {
         board.style.gridTemplateRows = `repeat(${ROWS}, 20px)`;
         board.style.setProperty('--cols', COLS);
         board.style.setProperty('--rows', ROWS);
+        board.style.width = `${COLS * 20}px`;
+        board.style.height = `${ROWS * 20}px`;
 
         // ゲーム盤のセルを生成
         for (let row = 0; row < ROWS; row++) {
@@ -101,16 +103,18 @@ document.addEventListener('DOMContentLoaded', () => {
         if (timerStarted) return;
         timerStarted = true;
         let startTime = Date.now();
-        timerInstance = anime({
-            targets: { time: 0 },
-            time: 1, // ダミーの値、updateで実際の時間を計算
+        
+        // anime.jsのTimerを使用
+        const timer = anime.timeline({
             duration: Infinity,
-            easing: 'linear',
-            update: function () {
+            autoplay: true,
+            update: function() {
                 const elapsedTime = Date.now() - startTime;
                 timerDiv.textContent = formatTime(elapsedTime);
             }
         });
+        
+        timerInstance = timer;
     }
 
     /**
