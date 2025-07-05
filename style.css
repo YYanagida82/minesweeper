@@ -47,22 +47,24 @@ body {
   flex-grow: 0;
   box-sizing: border-box;
   line-height: 1;
-  font-family: 'DSEG7 Classic', monospace;
+  font-family: 'DSEG7 Classic', 'DSEG7Modern-Regular', 'Share Tech Mono', monospace !important;
   letter-spacing: 0;
   font-weight: normal;
   text-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
+  padding: 2px 5px !important;
+  min-height: 28px;
 }
 
 /* 地雷数表示のスタイル */
 #mine-count {
-  width: 60px;
+  width: 75px;
   text-align: center;
   padding: 0;
 }
 
 /* タイマー表示のスタイル */
 #timer {
-  width: 90px;
+  width: 115px;
   text-align: center;
   padding: 0;
 }
@@ -70,9 +72,11 @@ body {
 /* 7セグメントLEDフォントの定義 */
 @font-face {
   font-family: 'DSEG7 Classic';
-  src: url('data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAA+IAA8AAAAAHwwAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABWAAAADsAAABUIIslek9TLzIAAAGUAAAAQwAAAFY+IFPDY21hcAAAAdgAAAB7AAABzK6E6vVjdnQgAAACVAAAAAsAAAAOAAAAAGZwZ20AAAJgAAAG7QAADgxiLvl6Z2FzcAAACSAAAAAIAAAACAAAABBnbHlmAAAJKAAAA+AAAAWAUKDeklhlYWQAAA0IAAAAMwAAADYZ1vVhaGhlYQAADTwAAAAgAAAAJAd5A4pobXR4AAANXAAAABgAAAAYEsH//2xvY2EAAA10AAAADgAAAA4DtgJSbWF4cAAADYQAAAAgAAAAIAEfC/VuYW1lAAANpAAAAXUAAALNzZ0YGXBvc3QAAA8cAAAARgAAAFxA1UoHcHJlcAAAD2QAAAB6AAAAnH62O7Z4nGNgZGBg4GIwYLBjYHJx8wlh4MtJLMljkGJgYYAAkDwymzEnMz2RgQPGA8qxgGkOIGaDiAIAJjsFSAB4nGNgZN7OOIGBlYGBqYppDwMDQw+EZnzAYMjIBBRlYGVmwAoC0lxTGA68YPjkyxz0P4shijmIYRpQmBEkBwAMiQy7AHic7ZHLDcMwDEMfnabtKT10jw7SI3P02mMG6BCZwpXlj2wZBHUOHIAeLGIAXZiKMPSG0PjITfWe3eoFZ+aJia1bvx5NJLnrVra/3Wr5XPGl1He6O/q9lDnYNDHxf6m/239PjXhvUid8b1IrfDOpH/5sYgs=') format('woff');
+  src: url('https://cdn.jsdelivr.net/npm/dseg@0.46.0/fonts/DSEG7-Classic/DSEG7Classic-Regular.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/npm/dseg@0.46.0/fonts/DSEG7-Classic/DSEG7Classic-Regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 #reset-button {

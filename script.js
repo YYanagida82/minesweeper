@@ -105,16 +105,16 @@ document.addEventListener('DOMContentLoaded', () => {
         let startTime = Date.now();
         
         // anime.jsのTimerを使用
-        const timer = anime.timeline({
+        timerInstance = anime({
+            targets: { value: 0 },
+            value: 1,
             duration: Infinity,
-            autoplay: true,
+            easing: 'linear',
             update: function() {
                 const elapsedTime = Date.now() - startTime;
                 timerDiv.textContent = formatTime(elapsedTime);
             }
         });
-        
-        timerInstance = timer;
     }
 
     /**
