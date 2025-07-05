@@ -1,4 +1,4 @@
-# マインスイーパーゲーム
+# [マインスイーパーゲーム](https://minesweeper-mu-vert.vercel.app/)
 
 Windows風のクラシックなマインスイーパーゲームのWeb実装です。
 
